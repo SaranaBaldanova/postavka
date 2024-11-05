@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Students</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        input[type="text"],
+        select {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            margin: 0 5px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .add-student {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .add-student:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<h1>Students</h1>
+<form th:action="@{/students/filter}" method="get">
+    <input type="text" name="fullName" placeholder="Filter by Full Name"/>
+    <button type="submit">Filter</button>
+</form>
+<form th:action="@{/students}" method="get">
+    <select id="sort" name="sort">
+        <option value="fullName">Sort by Full Name</option>
+        <option value="email">Sort by Email</option>
+        <option value="phone">Sort by Phone Number</option>
+    </select>
+    <button type="submit">Sort</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Record Book Number</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="student : ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.fullName}"></td>
+        <td th:text="${student.recordBookNumber}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.phoneNumber}"></td>
+        <td>
+            <a th:href="@{/students/{id}(id=${student.id})}">View</a>
+            <a th:href="@{/students/delete/{id}(id=${student.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+<a class="add-student" href="/students/add">Add Student</a>
+</body>
+</html>

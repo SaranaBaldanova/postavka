@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .student-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .student-details {
+                padding: 15px;
+            }
+
+            a {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="student-details">
+    <h1>Student Details</h1>
+    <p>ID: <span th:text="${student.id}"></span></p>
+    <p>Full Name: <span th:text="${student.fullName}"></span></p>
+    <p>Record Book Number: <span th:text="${student.recordBookNumber}"></span></p>
+    <p>Email: <span th:text="${student.email}"></span></p>
+    <p>Phone Number: <span th:text="${student.phoneNumber}"></span></p>
+    <a href="/students">Back to Students</a>
+</div>
+</body>
+</html>
