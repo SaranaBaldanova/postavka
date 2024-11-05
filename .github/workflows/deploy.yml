@@ -21,13 +21,21 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
-      - name: Build and push Docker images
+      - name: Build Docker images
         run: |
+          echo "Building Docker images..."
           docker-compose -f docker-compose.yml build
+
+      - name: Login to Docker Hub
+        run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Docker images
+        run: |
           docker tag docker-spring-boot-postgres:latest myusername/docker-spring-boot-postgres:latest
           docker push myusername/docker-spring-boot-postgres:latest
 
       - name: Run Docker Compose
         run: |
+          echo "Starting services with Docker Compose..."
           docker-compose -f docker-compose.yml up -d
