@@ -35,8 +35,8 @@ jobs:
 
       - name: Push Docker images
         run: |
-          docker tag docker-spring-boot-postgres:latest myusername/docker-spring-boot-postgres:latest
-          docker push myusername/docker-spring-boot-postgres:latest
+          docker tag docker-spring-boot-postgres:latest diperweb/docker-spring-boot-postgres:latest
+          docker push diperweb/docker-spring-boot-postgres:latest
 
       - name: Run Docker Compose
         run: |
